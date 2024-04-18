@@ -504,6 +504,11 @@ public class ExtraMenuBean {
                 menus = getComponentMenus(ComponentBean.COMPONENT_TYPE_FACEBOOK_ADS_INTERSTITIAL);
                 break;
 
+            case "shizuku":
+                title = "Select a Shizuku Component";
+                menus = getComponentMenus(ComponentBean.COMPONENT_TYPE_SHIZUKU);
+                break;
+
             case "providerType":
                 title = Helper.getResString(R.string.logic_editor_title_location_manager_provider_type);
                 menus = new ArrayList<>(Arrays.asList(uq.p));
