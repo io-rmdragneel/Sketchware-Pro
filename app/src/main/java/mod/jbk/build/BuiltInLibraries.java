@@ -139,10 +139,10 @@ public class BuiltInLibraries {
     public static String PLAY_SERVICES_PLACES_PLACEREPORT = "play-services-places-placereport-17.0.0";
     public static String PLAY_SERVICES_STATS = "play-services-stats-17.0.0";
     public static String PLAY_SERVICES_TASKS = "play-services-tasks-18.0.2";
-    public static String SHIZUKU_AIDL = "shizuku-aidl-v13.1.5";
-    public static String SHIZUKU_API = "shizuku-api-v13.1.5";
-    public static String SHIZUKU_PROVIDER = "shizuku-provider-v13.1.5";
-    public static String SHIZUKU_SHARED = "shizuku-shared-v13.1.5";
+    public static String SHIZUKU_AIDL = "shizuku-aidl-13.1.5";
+    public static String SHIZUKU_API = "shizuku-api-13.1.5";
+    public static String SHIZUKU_PROVIDER = "shizuku-provider-13.1.5";
+    public static String SHIZUKU_SHARED = "shizuku-shared-13.1.5";
     public static String UMP_USER_MESSAGING_PLATFORM = "user-messaging-platform-2.0.0";
     public static String WAVE_SIDE_BAR = "wave-side-bar";
     public static String YOUTUBE_PLAYER = "android-youtube-player-10.0.5";
@@ -356,7 +356,7 @@ public class BuiltInLibraries {
             new BuiltInLibrary(WAVE_SIDE_BAR, List.of(), "com.sayuti.lib"),
             new BuiltInLibrary(YOUTUBE_PLAYER, List.of(ANDROIDX_APPCOMPAT, ANDROIDX_RECYCLERVIEW, KOTLIN_STDLIB_JDK7),
                     "com.pierfrancescosoffritti.androidyoutubeplayer"),
-            new BuiltInLibrary(SHIZUKU_API, List.of(SHIZUKU_AIDL, SHIZUKU_SHARED, SHIZUKU_PROVIDER), "rikka.shizuku"),
+            new BuiltInLibrary(SHIZUKU_API, List.of(SHIZUKU_AIDL, SHIZUKU_SHARED, SHIZUKU_PROVIDER)),
             new BuiltInLibrary(SHIZUKU_AIDL),
             new BuiltInLibrary(SHIZUKU_PROVIDER),
             new BuiltInLibrary(SHIZUKU_SHARED),
