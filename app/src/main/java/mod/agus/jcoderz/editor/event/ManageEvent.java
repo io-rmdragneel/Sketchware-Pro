@@ -1035,7 +1035,7 @@ public class ManageEvent {
             case "onRequestPermissionResult":
                 return "@Override\r\n" +
                         "public void onRequestPermissionResult(int _requestCode, int _grantResult) {\r\n" +
-                        code +
+                        eventLogic + "\r\n" +
                         "}";
 
             default:
