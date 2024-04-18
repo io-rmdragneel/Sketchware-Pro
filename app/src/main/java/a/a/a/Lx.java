@@ -798,7 +798,7 @@ public class Lx {
                     break;
 
                 case "Shizuku":
-                    fieldDeclaration += "\r\nprivate Shizuku.OnRequestPermissionResultListener " + typeInstanceName + "_listener";
+                    fieldDeclaration = "\r\nprivate Shizuku.OnRequestPermissionResultListener " + typeInstanceName + "_listener;";
                     break;
 
                 default:
