@@ -797,6 +797,10 @@ public class Lx {
                     fieldDeclaration += "\r\nprivate TimePickerDialog.OnTimeSetListener " + typeInstanceName + "_listener;";
                     break;
 
+                case "Shizuku":
+                    fieldDeclaration += "\r\nprivate Shizuku.OnRequestPermissionResultListener " + typeInstanceName + "_listener";
+                    break;
+
                 default:
                     fieldDeclaration = ComponentsHandler.extraVar(typeName, fieldDeclaration, typeInstanceName);
                     break;
