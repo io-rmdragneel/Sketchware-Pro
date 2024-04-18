@@ -134,16 +134,22 @@ public class Lx {
         }
 
         if (isLibraryNotExcluded(BuiltInLibraries.FACEBOOK_ADS_AUDIENCE_NETWORK_SDK, excludedLibraries) && extraMetadata.isFBAdsUsed) {
-            content += "implementation 'com.facebook.android:audience-network-sdk:5.9.0'";
+            content += "implementation 'com.facebook.android:audience-network-sdk:5.9.0'\r\n";
         }
 
         if (isLibraryNotExcluded(BuiltInLibraries.PLAY_SERVICES_AUTH, excludedLibraries) && extraMetadata.isFBGoogleUsed) {
-            content += "implementation 'com.google.android.gms:play-services-auth:19.0.0'";
+            content += "implementation 'com.google.android.gms:play-services-auth:19.0.0'\r\n";
         }
 
         if (isLibraryNotExcluded(BuiltInLibraries.FIREBASE_MESSAGING, excludedLibraries) && extraMetadata.isFCMUsed) {
-            content += "implementation 'com.google.firebase:firebase-messaging:19.0.0'";
+            content += "implementation 'com.google.firebase:firebase-messaging:19.0.0'\r\n";
         }
+
+        if (isLibraryNotExcluded(BuiltInLibraries.SHIZUKU_API, excludedLibraries) && extraMetadata.isShizukuUsed) {
+            content += "implementation 'dev.rikka.shizuku:api:13.1.5'\r\n";
+            content += "implementation 'dev.rikka.shizuku:provider:13.1.5'\r\n";
+        }
+
         return j(content + "}\r\n", false);
     }
 

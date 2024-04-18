@@ -1048,7 +1048,7 @@ public class ManageEvent {
      */
     public static String g(String listenerName, String targetId, String listenerLogic) {
         switch (listenerName) {
-            case "onRequestPermissionResult":
+            case "OnRequestPermissionResultListener":
                 return targetId + "_listener = new Shizuku.OnRequestPermissionResultListener() {\r\n" +
                         listenerLogic + "\r\n" +
                         "};";

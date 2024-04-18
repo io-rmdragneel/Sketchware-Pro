@@ -47,5 +47,8 @@ public class ExtLibSelected {
         if (component.isWaveSideBarUsed) {
             kp.addLibrary(BuiltInLibraries.WAVE_SIDE_BAR);
         }
+        if (component.isShizukuUsed) {
+            kp.addLibrary(BuiltInLibraries.SHIZUKU_API);
+        }
     }
 }
