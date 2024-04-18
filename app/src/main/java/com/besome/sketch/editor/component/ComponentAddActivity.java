@@ -266,6 +266,7 @@ public class ComponentAddActivity extends BaseDialogActivity implements View.OnC
     public void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
         componentList = new ArrayList<>();
+        componentList.add(new ComponentBean(ComponentBean.COMPONENT_TYPE_SHIZUKU));
         componentList.add(new ComponentBean(ComponentBean.COMPONENT_TYPE_INTENT));
         componentList.add(new ComponentBean(ComponentBean.COMPONENT_TYPE_SHAREDPREF));
         componentList.add(new ComponentBean(ComponentBean.COMPONENT_TYPE_CALENDAR));

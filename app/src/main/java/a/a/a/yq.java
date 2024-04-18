@@ -510,6 +510,7 @@ public class yq {
                     case ComponentBean.COMPONENT_TYPE_ONESIGNAL -> N.x.isOneSignalUsed = true;
                     case ComponentBean.COMPONENT_TYPE_FACEBOOK_ADS_BANNER, ComponentBean.COMPONENT_TYPE_FACEBOOK_ADS_INTERSTITIAL ->
                             N.x.isFBAdsUsed = true;
+                    case ComponentBean.COMPONENT_TYPE_SHIZUKU -> N.x.isShizukuUsed = true;
                     default -> {
                     }
                 }

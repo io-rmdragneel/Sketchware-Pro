@@ -161,6 +161,9 @@ public class ManageEvent {
         if (gx.a("FBAdsInterstitial")) {
             listeners.add("FBAdsInterstitial_InterstitialAdListener");
         }
+        if (gx.a("Shizuku")) {
+            listeners.add("OnRequestPermissionResultListener");
+        }
         EventsHandler.addListeners(gx, listeners);
     }
 
@@ -327,6 +330,10 @@ public class ManageEvent {
                 list.add("onGoogleSignIn");
                 return;
 
+            case "OnRequestPermissionResultListener":
+                list.add("onRequestPermissionResult");
+                return;
+
             default:
                 EventsHandler.addEventsToListener(eventName, list);
         }
@@ -456,6 +463,7 @@ public class ManageEvent {
             case "onCompleteRegister":
                 return R.drawable.event_complete_register;
 
+            case "onRequestPermissionResult":
             case "onUpdatePasswordComplete":
                 return R.drawable.event_password_updated;
 
@@ -472,6 +480,9 @@ public class ManageEvent {
      */
     public static String e(String eventName) {
         switch (eventName) {
+            case "onRequestPermissionResult":
+                return "on request permission result";
+
             case "FBAdsBanner_onLoggingImpression":
             case "FBAdsInterstitial_onLoggingImpression":
                 return "onLoggingImpression";
@@ -1021,6 +1032,12 @@ public class ManageEvent {
             case "onUserEarnedReward":
                 return eventLogic;
 
+            case "onRequestPermissionResult":
+                return "@Override\r\n" +
+                        "public void onRequestPermissionResult(int _requestCode, int _grantResult) {\r\n" +
+                        code +
+                        "}";
+
             default:
                 return EventsHandler.getEventCode(targetId, eventName, eventLogic);
         }
@@ -1031,6 +1048,11 @@ public class ManageEvent {
      */
     public static String g(String listenerName, String targetId, String listenerLogic) {
         switch (listenerName) {
+            case "onRequestPermissionResult":
+                return targetId + "_listener = new Shizuku.OnRequestPermissionResultListener() {\r\n" +
+                        listenerLogic + "\r\n" +
+                        "};";
+
             case "OnCompletionListener":
                 return targetId + ".setOnCompletionListener(new MediaPlayer.OnCompletionListener() {\r\n" +
                         listenerLogic + "\r\n" +
@@ -1256,6 +1278,9 @@ public class ManageEvent {
 
     public static String h(String eventName) {
         switch (eventName) {
+            case "onRequestPermissionResult":
+                return "%d.requestCode %d.grantResult";
+
             case "onUpdateProfileComplete":
             case "onEmailVerificationSent":
             case "onDeleteUserComplete":
@@ -1424,11 +1449,18 @@ public class ManageEvent {
             list.add("onAccountPicker");
             list.add("onAccountPickerCancelled");
         }
+
+        if (gx.a("Shizuku")) {
+            list.add("onRequestPermissionResult");
+        }
         EventsHandler.addEvents(gx, list);
     }
 
     public static String i(String targetId, String eventName) {
         switch (eventName) {
+            case "onRequestPermissionResult":
+            return "When " + targetId + " on request permission result %d.requestCode %d.grantResult";
+
             case "onUpdateProfileComplete":
             case "onEmailVerificationSent":
             case "onDeleteUserComplete":

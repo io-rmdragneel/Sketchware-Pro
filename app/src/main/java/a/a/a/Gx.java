@@ -409,6 +409,10 @@ public class Gx {
                 classInfos = "Component.RequestNetwork";
                 break;
 
+            case "Shizuku":
+                classInfos = "Component.Shizuku";
+                break;
+
             default:
                 classInfos = ComponentsHandler.c(a);
         }

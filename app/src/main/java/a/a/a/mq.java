@@ -57,6 +57,7 @@ public class mq {
      */
     public static String a(int componentId) {
         return switch (componentId) {
+            case ComponentBean.COMPONENT_TYPE_SHIZUKU -> "Shizuku";
             case ComponentBean.COMPONENT_TYPE_INTENT -> "Intent";
             case ComponentBean.COMPONENT_TYPE_SHAREDPREF -> "SharedPreferences";
             case ComponentBean.COMPONENT_TYPE_CALENDAR -> "Calendar";
@@ -132,6 +133,7 @@ public class mq {
 
     public static String b(String name) {
         return switch (name) {
+            case "shizuku", "Shizuku" -> "Shizuku";
             case "intent", "Intent" -> "Intent";
             case "file", "File", "File (Shared Preferences)" -> "SharedPreferences";
             case "calendar", "Calendar" -> "Calendar";
@@ -313,6 +315,11 @@ public class mq {
                 importList.add("com.google.android.gms.maps.OnMapReadyCallback");
                 importList.add("com.google.android.gms.maps.model.Marker");
                 importList.add("com.google.android.gms.maps.model.BitmapDescriptorFactory");
+                return importList;
+
+            case "Shizuku":
+                importList.add("rikka.shizuku.Shizuku");
+                importList.add("rikka.shizuku.ShizukuProvider");
                 return importList;
 
             case "Intent":

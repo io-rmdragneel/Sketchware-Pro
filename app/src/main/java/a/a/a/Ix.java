@@ -49,6 +49,21 @@ public class Ix {
         a.addAttribute("xmlns", "android", "http://schemas.android.com/apk/res/android");
     }
 
+    private void writeShizukuProvider(XmlBuilder applicationTag) {
+        XmlBuilder providerTag = new XmlBuilder("provider");
+        providerTag.addAttribute("android", "name", "rikka.shizuku.ShizukuProvider");
+        providerTag.addAttribute("android", "authorities", c.packageName + ".shizuku");
+        providerTag.addAttribute("android", "multiprocess", "false");
+        providerTag.addAttribute("android", "enabled", "true");
+        providerTag.addAttribute("android", "exported", "true");
+        providerTag.addAttribute("android", "permission", "android.permission.INTERACT_ACROSS_USERS_FULL");
+        applicationTag.a(providerTag);
+        XmlBuilder metadataTag = new XmlBuilder("meta-data");
+        metadataTag.addAttribute("android", "name", "moe.shizuku.client.V3.SUPPORT");
+        metadataTag.addAttribute("android", "value", "true");
+        applicationTag.a(metadataTag);
+    }
+
     /**
      * Adds FileProvider metadata to AndroidManifest.
      *
@@ -505,30 +520,40 @@ public class Ix {
             writePermission(a, "me.everything.badger.permission.BADGE_COUNT_READ");
             writePermission(a, "me.everything.badger.permission.BADGE_COUNT_WRITE");
         }
+        if (c.x.isShizukuUsed) {
+            writePermission(a, "moe.shizuku.manager.permission.API_V23");
+        }
         AndroidManifestInjector.getP(a, c.sc_id);
 
-        if (c.isAdMobEnabled) {
+        if (c.x.isShizukuUsed || c.isAdMobEnabled) {
             XmlBuilder queries = new XmlBuilder("queries");
-            XmlBuilder forBrowserContent = new XmlBuilder("intent");
-            {
-                XmlBuilder action = new XmlBuilder("action");
-                action.addAttribute("android", "name", "android.intent.action.VIEW");
-                forBrowserContent.a(action);
-                XmlBuilder category = new XmlBuilder("category");
-                category.addAttribute("android", "name", "android.intent.category.BROWSABLE");
-                forBrowserContent.a(category);
-                XmlBuilder data = new XmlBuilder("data");
-                data.addAttribute("android", "scheme", "https");
-                forBrowserContent.a(data);
+            if (c.isAdMobEnabled) {
+                XmlBuilder forBrowserContent = new XmlBuilder("intent");
+                {
+                    XmlBuilder action = new XmlBuilder("action");
+                    action.addAttribute("android", "name", "android.intent.action.VIEW");
+                    forBrowserContent.a(action);
+                    XmlBuilder category = new XmlBuilder("category");
+                    category.addAttribute("android", "name", "android.intent.category.BROWSABLE");
+                    forBrowserContent.a(category);
+                    XmlBuilder data = new XmlBuilder("data");
+                    data.addAttribute("android", "scheme", "https");
+                    forBrowserContent.a(data);
+                }
+                queries.a(forBrowserContent);
+                XmlBuilder forCustomTabsService = new XmlBuilder("intent");
+                {
+                    XmlBuilder action = new XmlBuilder("action");
+                    action.addAttribute("android", "name", "android.support.customtabs.action.CustomTabsService");
+                    forCustomTabsService.a(action);
+                }
+                queries.a(forCustomTabsService);
             }
-            queries.a(forBrowserContent);
-            XmlBuilder forCustomTabsService = new XmlBuilder("intent");
-            {
-                XmlBuilder action = new XmlBuilder("action");
-                action.addAttribute("android", "name", "android.support.customtabs.action.CustomTabsService");
-                forCustomTabsService.a(action);
+            if (c.x.isShizukuUsed) {
+                XmlBuilder shizuku = new XmlBuilder("package");
+                shizuku.addAttribute("android", "name", "moe.shizuku.privileged.api");
+                queries.a(shizuku);
             }
-            queries.a(forCustomTabsService);
             a.a(queries);
         }
 
@@ -663,6 +688,9 @@ public class Ix {
         }
         if (c.isFirebaseEnabled) {
             writeFirebaseMetaData(applicationTag);
+        }
+        if (c.x.isShizukuUsed) {
+            writeShizukuProvider(applicationTag);
         }
         if (c.u) {
             writeFileProvider(applicationTag);

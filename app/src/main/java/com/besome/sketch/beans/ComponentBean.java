@@ -23,6 +23,7 @@ public class ComponentBean extends CollapsibleBean implements Parcelable {
         }
     };
 
+    public static final int COMPONENT_TYPE_SHIZUKU = 0;
     public static final int COMPONENT_TYPE_INTENT = 1;
     public static final int COMPONENT_TYPE_SHAREDPREF = 2;
     public static final int COMPONENT_TYPE_CALENDAR = 3;
@@ -165,6 +166,7 @@ public class ComponentBean extends CollapsibleBean implements Parcelable {
             case COMPONENT_TYPE_SPEECH_TO_TEXT:
             case COMPONENT_TYPE_BLUETOOTH_CONNECT:
             case COMPONENT_TYPE_LOCATION_MANAGER:
+            case COMPONENT_TYPE_SHIZUKU:
                 // sad :c
                 return "";
 
@@ -187,6 +189,9 @@ public class ComponentBean extends CollapsibleBean implements Parcelable {
      */
     public static String getComponentName(Context context, int type) {
         switch (type) {
+            case COMPONENT_TYPE_SHIZUKU:
+                return "Shizuku";
+
             case COMPONENT_TYPE_INTENT:
                 return "Intent";
 
@@ -296,6 +301,9 @@ public class ComponentBean extends CollapsibleBean implements Parcelable {
 
     public static int getComponentTypeByTypeName(String typeName) {
         switch (typeName) {
+            case "Shizuku":
+                return COMPONENT_TYPE_SHIZUKU;
+
             case "Intent":
                 return COMPONENT_TYPE_INTENT;
 
@@ -405,6 +413,9 @@ public class ComponentBean extends CollapsibleBean implements Parcelable {
 
     public static String getComponentTypeName(int type) {
         switch (type) {
+            case COMPONENT_TYPE_SHIZUKU:
+                return "Shizuku";
+
             case COMPONENT_TYPE_INTENT:
                 return "Intent";
 
@@ -518,6 +529,9 @@ public class ComponentBean extends CollapsibleBean implements Parcelable {
 
     public static int getDescStrResource(int type) {
         switch (type) {
+            case COMPONENT_TYPE_SHIZUKU:
+                return R.string.component_description_shizuku;
+
             case COMPONENT_TYPE_INTENT:
                 return R.string.component_description_intent;
 
@@ -627,6 +641,9 @@ public class ComponentBean extends CollapsibleBean implements Parcelable {
 
     public static int getIconResource(int type) {
         switch (type) {
+            case COMPONENT_TYPE_SHIZUKU:
+                return R.drawable.widget_shizuku;
+
             case COMPONENT_TYPE_INTENT:
                 return R.drawable.widget_intent;
 
@@ -733,6 +750,10 @@ public class ComponentBean extends CollapsibleBean implements Parcelable {
     public void buildClassInfo() {
         String typeName;
         switch (type) {
+            case COMPONENT_TYPE_SHIZUKU:
+                typeName = "Shizuku";
+                break;
+
             case COMPONENT_TYPE_INTENT:
                 typeName = "Intent";
                 break;

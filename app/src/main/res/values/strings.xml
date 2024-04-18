@@ -1033,6 +1033,7 @@ ex)\"*/*\", \"image/*\", \"audio/*\", \"text/*\""</string>
     <string name="component_description_request_network">RequestNetwork is used to make Web API calls</string>
     <string name="component_description_soundpool">SoundPool is used to play short sound effects</string>
     <string name="component_description_speech_to_text">SpeechToText is used to convert speech to text</string>
+    <string name="component_description_shizuku">Shizuku is an API that can call your Java/JNI code with root/shell (ADB) indentity</string>
     <string name="component_description_text_to_speech">TextToSpeech is used to convert text to speech</string>
     <string name="component_description_timer">Timer is used to delay certain actions</string>
     <string name="component_description_vibrator">Vibrator is used vibrate the device</string>
