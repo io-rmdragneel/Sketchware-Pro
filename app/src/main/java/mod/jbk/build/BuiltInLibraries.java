@@ -357,6 +357,9 @@ public class BuiltInLibraries {
             new BuiltInLibrary(YOUTUBE_PLAYER, List.of(ANDROIDX_APPCOMPAT, ANDROIDX_RECYCLERVIEW, KOTLIN_STDLIB_JDK7),
                     "com.pierfrancescosoffritti.androidyoutubeplayer"),
             new BuiltInLibrary(SHIZUKU_API, List.of(SHIZUKU_AIDL, SHIZUKU_SHARED, SHIZUKU_PROVIDER), "rikka.shizuku"),
+            new BuiltInLibrary(SHIZUKU_AIDL),
+            new BuiltInLibrary(SHIZUKU_PROVIDER),
+            new BuiltInLibrary(SHIZUKU_SHARED),
     };
 
     public static File getLibraryPath(String libraryName) {
