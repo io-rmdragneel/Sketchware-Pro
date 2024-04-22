@@ -2410,7 +2410,7 @@ public class BlocksHandler {
         hashMap = new HashMap<>();
         hashMap.put("name", "shizukuIsInstalled");
         hashMap.put("type", "b");
-        hashMap.put("code", "ShizukuUtil.isInstalled(getApplicationContext())");
+        hashMap.put("code", "ShizukuUtil.isShizukuInstalled(getApplicationContext())");
         hashMap.put("palette", "-1");
         hashMap.put("color", "#2aa4e2");
         hashMap.put("spec", "Shizuku is available");
