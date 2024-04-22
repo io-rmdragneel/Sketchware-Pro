@@ -3136,6 +3136,7 @@ public class Lx {
         return "package " + packageName + ";\r\n\n" +
                 "import android.app.Activity;\r\n" +
                 "import android.content.Context;\r\n" +
+                "import android.content.pm.ApplicationInfo;\r\n" +
                 "import android.content.pm.PackageManager;\r\n" +
                 "\r\n" +
                 "import java.io.BufferedReader;\r\n" +
@@ -3154,7 +3155,7 @@ public class Lx {
                 "public class ShizukuUtil {\r\n" +
                 "\r\n" +
                 "    public static boolean isReady() {\r\n" +
-                "        return isRunning() && Shizuku.checkSelfPermission == PackageManager.PERMISSION_GRANTED;\r\n" +
+                "        return isRunning() && Shizuku.checkSelfPermission() == PackageManager.PERMISSION_GRANTED;\r\n" +
                 "    }\r\n" +
                 "\r\n" +
                 "    public static boolean isRunning() {\r\n" +
@@ -3163,9 +3164,9 @@ public class Lx {
                 "\r\n" +
                 "    public static String execute(Process process) throws Exception {\r\n" +
                 "        try (BufferedReader reader =\r\n" +
-                "                new BufferedReader(new InputStreamReader(process.getInputStream)));\r\n" +
+                "                new BufferedReader(new InputStreamReader(process.getInputStream()));\r\n" +
                 "            BufferedReader error =\r\n" +
-                "                new BufferedReader(new InputStreamReader(process.getErrorStream)))) {\r\n" +
+                "                new BufferedReader(new InputStreamReader(process.getErrorStream()))) {\r\n" +
                 "            StringBuilder output = new StringBuilder();\r\n" +
                 "            String line;\r\n" +
                 "            while ((line = reader.readLine()) != null) {\r\n" +
@@ -3196,15 +3197,15 @@ public class Lx {
                 "        }\r\n" +
                 "    }\r\n" +
                 "\r\n" +
-                "    public static boolean moveFile(String sourcePath, directoryPath) {\r\n" +
+                "    public static boolean moveFile(String sourcePath, String directoryPath) {\r\n" +
                 "        return copyFile(sourcePath, directoryPath, true);\r\n" +
                 "    }\r\n" +
                 "\r\n" +
-                "    public static boolean copyFile(String sourcePath, directoryPath) {\r\n" +
+                "    public static boolean copyFile(String sourcePath, String directoryPath) {\r\n" +
                 "        return copyFile(sourcePath, directoryPath, false);\r\n" +
                 "    }\r\n" +
                 "\r\n" +
-                "    public static boolean copyFile(String sourcePath, directoryPath, boolean delete) {\r\n" +
+                "    public static boolean copyFile(String sourcePath, String directoryPath, boolean delete) {\r\n" +
                 "        try {\r\n" +
                 "            ShizukuRemoteProcess process = newProcess(new String[] {\"sh\", \"-c\", \"cp -r \" + escapeFilePath(sourcePath) + \" \" + directoryPath}, null, null);\r\n" +
                 "            if (process != null) {\r\n" +
@@ -3223,7 +3224,7 @@ public class Lx {
                 "\r\n" +
                 "    private static ShizukuRemoteProcess newProcess(String[] cmd, String[] env, String dir) {\r\n" +
                 "        try {\r\n" +
-                "            Method method = Shizuku.class.getDeclatedMethod(\"newProcess\", String[].class, String[].class, String);\r\n" +
+                "            Method method = Shizuku.class.getDeclatedMethod(\"newProcess\", String[].class, String[].class, String.class);\r\n" +
                 "            method.setAccessible(true);\r\n" +
                 "            return (ShizukuRemoteProcess) method.invoke(null, cmd, env, dir);\r\n" +
                 "        } catch (NoSuchMethodException e) {\r\n" +
@@ -3234,7 +3235,7 @@ public class Lx {
                 "    }\r\n" +
                 "\r\n" +
                 "    private static String escapeFilePath(String filePath) {\r\n" +
-                "        return filePath.relaceAll(\" \", \"\\\\\\\\ \");\r\n" +
+                "        return filePath.replaceAll(\" \", \"\\\\\\\\ \");\r\n" +
                 "    }\r\n" +
                 "\r\n" +
                 "    @SuppressWarnings(\"deprecation\")\r\n" +
