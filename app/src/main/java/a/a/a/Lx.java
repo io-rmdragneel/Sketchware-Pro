@@ -3224,7 +3224,7 @@ public class Lx {
                 "\r\n" +
                 "    private static ShizukuRemoteProcess newProcess(String[] cmd, String[] env, String dir) {\r\n" +
                 "        try {\r\n" +
-                "            Method method = Shizuku.class.getDeclatedMethod(\"newProcess\", String[].class, String[].class, String.class);\r\n" +
+                "            Method method = Shizuku.class.getDeclaredMethod(\"newProcess\", String[].class, String[].class, String.class);\r\n" +
                 "            method.setAccessible(true);\r\n" +
                 "            return (ShizukuRemoteProcess) method.invoke(null, cmd, env, dir);\r\n" +
                 "        } catch (NoSuchMethodException e) {\r\n" +
@@ -3266,6 +3266,7 @@ public class Lx {
                 "                Shizuku.requestPermission(requestCode);\r\n" +
                 "            }\r\n" +
                 "        }\r\n" +
+                "        return false;\r\n" +
                 "    }\r\n" + 
                 "}\r\n";
     }
