@@ -933,6 +933,8 @@ public class ExtraPaletteBlock {
                     logicEditor.a("b", "shizukuMoveFile");
                     logicEditor.a("b", "shizukuCopyFile");
                     logicEditor.a("b", "shizukuCheckPermission");
+                    logicEditor.a(" ", "shizukuAddRequestPermission");
+                    logicEditor.a(" ", "shizukuRemoveRequestPermission");
                 }
                 if (extraBlocks.isComponentUsed(ComponentBean.COMPONENT_TYPE_INTENT)
                         || extraBlocks.isCustomVarUsed("Intent")) {

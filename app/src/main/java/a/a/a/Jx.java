@@ -569,10 +569,10 @@ public class Jx {
                     .replaceAll(".setLayoutManager\\(new LinearLayoutManager\\(this", ".setLayoutManager(new LinearLayoutManager(getContext()")
                     .replaceAll("getLayoutInflater\\(\\)", "getActivity().getLayoutInflater()")
                     .replaceAll("getSupportFragmentManager\\(\\)", "getActivity().getSupportFragmentManager()")
-                    .replaceAll("<?activity_name?>", "getActivity()");
+                    .replaceAll("\\<\\?activity_name\\?\\>", "getActivity()");
         } else if (buildConfig.g) {
             code = code.replaceAll("getFragmentManager", "getSupportFragmentManager")
-                    .replaceAll("<?activity_name?>", projectFileBean.getActivityName() + ".this");
+                    .replaceAll("\\<\\?activity_name\\?\\>", projectFileBean.getActivityName() + ".this");
         }
 
         return CommandBlock.CB(Lx.j(code, false));

@@ -3200,11 +3200,11 @@ public class Lx {
                 "       return copyFile(sourcePath, directoryPath, true);\r\n" +
                 "   }\r\n" +
                 "\r\n" +
-                "   public static boolean copyFile(String sourcePath, directoryPath) throws Exception {\r\n" +
+                "   public static boolean copyFile(String sourcePath, directoryPath) {\r\n" +
                 "       return copyFile(sourcePath, directoryPath, false);\r\n" +
                 "   }\r\n" +
                 "\r\n" +
-                "   public static boolean copyFile(String sourcePath, directoryPath, boolean delete) throws Exception {\r\n" +
+                "   public static boolean copyFile(String sourcePath, directoryPath, boolean delete) {\r\n" +
                 "       try {\r\n" +
                 "          ShizukuRemoteProcess process = newProcess(new String[] {\"sh\", \"-c\", \"cp -r \" + escapeFilePath(sourcePath) + \" \" + directoryPath}, null, null);\r\n" +
                 "           if (process != null) {\r\n" +
@@ -3227,9 +3227,7 @@ public class Lx {
                 "           method.setAccessible(true);\r\n" +
                 "           return (ShizukuRemoteProcess) method.invoke(null, cmd, env, dir);\r\n" +
                 "       } catch (NoSuchMethodException e) {\r\n" +
-                "       }\r\n" +
                 "       } catch (IllegalAccessException e) {\r\n" +
-                "       }\r\n" +
                 "       } catch (InvocationTargetException e) {\r\n" +
                 "       }\r\n" +
                 "       return null;\r\n" +

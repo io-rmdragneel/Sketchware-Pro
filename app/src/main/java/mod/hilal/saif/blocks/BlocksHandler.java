@@ -2469,6 +2469,24 @@ public class BlocksHandler {
         hashMap.put("color", "#2aa4e2");
         hashMap.put("spec", "Shizuku check permission with request code %d");
         arrayList.add(hashMap);
+
+        hashMap = new HashMap<>();
+        hashMap.put("name", "shizukuAddRequestPermission");
+        hashMap.put("type", " ");
+        hashMap.put("code", "Shizuku.addRequestPermissionResultListener(%s_listener);");
+        hashMap.put("palette", "-1");
+        hashMap.put("color", "#2aa4e2");
+        hashMap.put("spec", "%m.shizuku add request permission result listener");
+        arrayList.add(hashMap);
+
+        hashMap = new HashMap<>();
+        hashMap.put("name", "shizukuRemoveRequestPermission");
+        hashMap.put("type", " ");
+        hashMap.put("code", "Shizuku.removeRequestPermissionResultListener(%s_listener);");
+        hashMap.put("palette", "-1");
+        hashMap.put("color", "#2aa4e2");
+        hashMap.put("spec", "%m.shizuku remove request permission result listener");
+        arrayList.add(hashMap);
     }
 
     private static void checkDir() {
