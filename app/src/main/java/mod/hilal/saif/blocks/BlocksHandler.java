@@ -2406,6 +2406,69 @@ public class BlocksHandler {
         hashMap.put("palette", "-1");
         hashMap.put("spec", "%m.videoad register fullscreen content callbacks (This Block isn't needed anymore, please remove it)");
         arrayList.add(hashMap);
+
+        hashMap = new HashMap<>();
+        hashMap.put("name", "shizukuIsInstalled");
+        hashMap.put("type", "b");
+        hashMap.put("code", "ShizukuUtil.isInstalled(getApplicationContext())");
+        hashMap.put("palette", "-1");
+        hashMap.put("color", "#2aa4e2");
+        hashMap.put("spec", "Shizuku is available");
+        arrayList.add(hashMap);
+
+        hashMap = new HashMap<>();
+        hashMap.put("name", "shizukuIsReady");
+        hashMap.put("type", "b");
+        hashMap.put("code", "ShizukuUtil.isReady()");
+        hashMap.put("palette", "-1");
+        hashMap.put("color", "#2aa4e2");
+        hashMap.put("spec", "Shizuku is ready");
+        arrayList.add(hashMap);
+
+        hashMap = new HashMap<>();
+        hashMap.put("name", "shizukuIsRunning");
+        hashMap.put("type", "b");
+        hashMap.put("code", "ShizukuUtil.isRunning()");
+        hashMap.put("palette", "-1");
+        hashMap.put("color", "#2aa4e2");
+        hashMap.put("spec", "Shizuku is running");
+        arrayList.add(hashMap);
+
+        hashMap = new HashMap<>();
+        hashMap.put("name", "shizukuUnzip");
+        hashMap.put("type", "b");
+        hashMap.put("code", "ShizukuUtil.unzip(%s, %s)");
+        hashMap.put("palette", "-1");
+        hashMap.put("color", "#2aa4e2");
+        hashMap.put("spec", "Shizuku unzip %s to %s");
+        arrayList.add(hashMap);
+
+        hashMap = new HashMap<>();
+        hashMap.put("name", "shizukuMoveFile");
+        hashMap.put("type", "b");
+        hashMap.put("code", "ShizukuUtil.moveFile(%s, %s)");
+        hashMap.put("palette", "-1");
+        hashMap.put("color", "#2aa4e2");
+        hashMap.put("spec", "Shizuku move %s to %s");
+        arrayList.add(hashMap);
+
+        hashMap = new HashMap<>();
+        hashMap.put("name", "shizukuCopyFile");
+        hashMap.put("type", "b");
+        hashMap.put("code", "ShizukuUtil.copyFile(%s, %s)");
+        hashMap.put("palette", "-1");
+        hashMap.put("color", "#2aa4e2");
+        hashMap.put("spec", "Shizuku copy %s to %s");
+        arrayList.add(hashMap);
+
+        hashMap = new HashMap<>();
+        hashMap.put("name", "shizukuCheckPermission");
+        hashMap.put("type", "b");
+        hashMap.put("code", "ShizukuUtil.checkPermission(<?activity_name?>, %s)");
+        hashMap.put("palette", "-1");
+        hashMap.put("color", "#2aa4e2");
+        hashMap.put("spec", "Shizuku check permission with request code %d");
+        arrayList.add(hashMap);
     }
 
     private static void checkDir() {

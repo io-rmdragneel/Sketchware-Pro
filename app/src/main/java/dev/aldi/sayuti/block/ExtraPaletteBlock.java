@@ -924,6 +924,16 @@ public class ExtraPaletteBlock {
                 logicEditor.a("s", "intentGetString");
                 logicEditor.a("f", "finishActivity");
                 logicEditor.a("f", "finishAffinity");
+                if (extraBlocks.isComponentUsed(ComponentBean.COMPONENT_TYPE_SHIZUKU)) {
+                    logicEditor.a("Shizuku", 0xff555555);
+                    logicEditor.a("b", "shizukuIsInstalled");
+                    logicEditor.a("b", "shizukuIsReady");
+                    logicEditor.a("b", "shizukuIsRunning");
+                    logicEditor.a("b", "shizukuUnzip");
+                    logicEditor.a("b", "shizukuMoveFile");
+                    logicEditor.a("b", "shizukuCopyFile");
+                    logicEditor.a("b", "shizukuCheckPermission");
+                }
                 if (extraBlocks.isComponentUsed(ComponentBean.COMPONENT_TYPE_INTENT)
                         || extraBlocks.isCustomVarUsed("Intent")) {
                     logicEditor.a("Intent", 0xff555555);

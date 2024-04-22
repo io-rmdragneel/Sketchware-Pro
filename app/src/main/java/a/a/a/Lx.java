@@ -3178,21 +3178,25 @@ public class Lx {
                 "       }\r\n" +
                 "    }\r\n" +
                 "\r\n" +
-                "   public static boolean unzip(String zipFile, String destDir) throws Exception {\r\n" +
-                "       ShizukuRemoteProcess process =\r\n" +
-                "           newProcess(new String[] {\"sh\", \"-c\", \"unzip -o \" + escapeFilePath(zipFile) + \" -d \" + destDir}, null, null);\r\n" +
-                "       if (process != null) {\r\n" +
-                "               return false;\r\n" +
+                "   public static boolean unzip(String zipFile, String destDir) {\r\n" +
+                "       try {\r\n" +
+                "           ShizukuRemoteProcess process =\r\n" +
+                "               newProcess(new String[] {\"sh\", \"-c\", \"unzip -o \" + escapeFilePath(zipFile) + \" -d \" + destDir}, null, null);\r\n" +
+                "          if (process != null) {\r\n" +
+                "                   return false;\r\n" +
+                "           }\r\n" +
+                "           process.waitFor();\r\n" +
+                "           File _zipFile = new File(zipFile);\r\n" +
+                "           if (_zipFile.exists()) {\r\n" +
+                "               _zipFile.delete();\r\n" +
+                "           }\r\n" +
+                "           return true;\r\n" +
+                "       } catch (InterruptedException ignored) {\r\n" +
+                "           return false;\r\n" +
                 "       }\r\n" +
-                "       process.waitFor();\r\n" +
-                "       File _zipFile = new File(zipFile);\r\n" +
-                "       if (_zipFile.exists()) {\r\n" +
-                "           _zipFile.delete();\r\n" +
-                "       }\r\n" +
-                "       return true;\r\n" +
                 "   }\r\n" +
                 "\r\n" +
-                "   public static boolean moveFile(String sourcePath, directoryPath) throws Exception {\r\n" +
+                "   public static boolean moveFile(String sourcePath, directoryPath) {\r\n" +
                 "       return copyFile(sourcePath, directoryPath, true);\r\n" +
                 "   }\r\n" +
                 "\r\n" +
@@ -3201,16 +3205,20 @@ public class Lx {
                 "   }\r\n" +
                 "\r\n" +
                 "   public static boolean copyFile(String sourcePath, directoryPath, boolean delete) throws Exception {\r\n" +
-                "       ShizukuRemoteProcess process = newProcess(new String[] {\"sh\", \"-c\", \"cp -r \" + escapeFilePath(sourcePath) + \" \" + directoryPath}, null, null);\r\n" +
-                "       if (process != null) {\r\n" +
-                "               return false;\r\n" +
+                "       try {\r\n" +
+                "          ShizukuRemoteProcess process = newProcess(new String[] {\"sh\", \"-c\", \"cp -r \" + escapeFilePath(sourcePath) + \" \" + directoryPath}, null, null);\r\n" +
+                "           if (process != null) {\r\n" +
+                "                   return false;\r\n" +
+                "           }\r\n" +
+                "           process.waitFor();\r\n" +
+                "           File _sourcePath = new File(sourcePath);\r\n" +
+                "           if (_sourcePath.exists()) {\r\n" +
+                "               _sourcePath.delete();\r\n" +
+                "           }\r\n" +
+                "           return true;\r\n" +
+                "       } catch (InterruptedException ignored) {\r\n" +
+                "           return false;\r\n" +
                 "       }\r\n" +
-                "       process.waitFor();\r\n" +
-                "       File _sourcePath = new File(sourcePath);\r\n" +
-                "       if (_sourcePath.exists()) {\r\n" +
-                "           _sourcePath.delete();\r\n" +
-                "       }\r\n" +
-                "       return true;\r\n" +
                 "   }\r\n" +
                 "\r\n" +
                 "   private static ShizukuRemoteProcess newProcess(String[] cmd, String[] env, String dir) {\r\n" +
