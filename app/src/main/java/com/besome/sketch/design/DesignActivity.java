@@ -1042,8 +1042,15 @@ public class DesignActivity extends BaseAppCompatActivity implements OnClickList
                         return;
                     }
 
+                    publishProgress("Aligning APK...");
+                    builder.runZipalign(builder.yq.unsignedUnalignedApkPath, builder.yq.unsignedAlignedApkPath);
+                    if (canceled) {
+                        cancel(true);
+                        return;
+                    }
+
                     publishProgress("Signing APK...");
-                    builder.signDebugApk();
+                    TestkeySignBridge.signWithTestkey(builder.yq.unsignedAlignedApkPath, yq.finalToInstallApkPath);
                     if (canceled) {
                         cancel(true);
                         return;

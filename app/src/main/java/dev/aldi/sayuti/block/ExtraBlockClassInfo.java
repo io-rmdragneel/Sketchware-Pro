@@ -100,6 +100,7 @@ public class ExtraBlockClassInfo {
             case "signinbutton" -> "SignInButton";
             case "materialButton" -> "MaterialButton";
             case "fragmentAdapter" -> "FragmentAdapter";
+            case "shizuku", "Shizuku" -> "Shizuku";
             default -> str;
         };
     }
