@@ -1051,7 +1051,7 @@ public class DesignActivity extends BaseAppCompatActivity implements OnClickList
                     }
 
                     publishProgress("Signing APK...");
-                    TestkeySignBridge.signWithTestkey(builder.yq.unsignedAlignedApkPath, yq.finalToInstallApkPath);
+                    TestkeySignBridge.signWithTestkey(builder.yq.unsignedAlignedApkPath, builder.yq.finalToInstallApkPath);
                     if (canceled) {
                         cancel(true);
                         return;
