@@ -111,6 +111,7 @@ import mod.jbk.code.CodeEditorLanguages;
 import mod.jbk.diagnostic.CompileErrorSaver;
 import mod.jbk.diagnostic.MissingFileException;
 import mod.jbk.util.LogUtil;
+import mod.jbk.util.TestkeySignBridge;
 import mod.khaled.logcat.LogReaderActivity;
 
 public class DesignActivity extends BaseAppCompatActivity implements OnClickListener {
