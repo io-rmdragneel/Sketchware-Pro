@@ -776,6 +776,13 @@ public class yq {
             }
         }
 
+        if  (N.x.isShizukuUsed) {
+            if (!javaFiles.contains(new File(javaDir + "ShizukuUtil.java")) && N.x.isShizukuUsed) {
+                srcCodeBeans.add(new SrcCodeBean("ShizukuUtil.java",
+                        Lx.j(Lx.getShizukuUtil(packageName), false)));
+            }
+        }
+
         srcCodeBeans.add(new SrcCodeBean("AndroidManifest.xml",
                 CommandBlock.applyCommands("AndroidManifest.xml", ix.a())));
         if (N.g) {

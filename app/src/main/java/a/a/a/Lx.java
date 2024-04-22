@@ -3130,6 +3130,141 @@ public class Lx {
     }
 
     /**
+     * @return Content of a <code>ShizukuUtil.java</code> file, with indentation
+     */
+    public static String getShizukuUtil(String packageName) {
+        return "package " + packageName + ";\r\n\n" +
+                "import android.app.Activity;\r\n" +
+                "import android.content.Context;\r\n" +
+                "import android.content.pm.PackageManager;\r\n" +
+                "\r\n" +
+                "import java.io.BufferedReader;\r\n" +
+                "import java.io.File;\r\n" +
+                "import java.io.InputStreamReader;\r\n" +
+                "import java.lang.reflect.Method;\r\n" +
+                "import java.lang.reflect.InvocationTargetException;\r\n" +
+                "import java.util.Arrays;\r\n" +
+                "import java.util.ArrayList;\r\n" +
+                "import java.util.List;\r\n" +
+                "\r\n" +
+                "import rikka.shizuku.Shizuku;\r\n" +
+                "import rikka.shizuku.ShizukuProvider;\r\n" +
+                "import rikka.shizuku.ShizukuRemoteProcess;\n" +
+                "\r\n" +
+                "public class ShizukuUtil {\r\n" +
+                "\r\n" +
+                "    public static boolean isReady() {\r\n" +
+                "        return isRunning() && Shizuku.checkSelfPermission == PackageManager.PERMISSION_GRANTED;\r\n" +
+                "    }\r\n" +
+                "\r\n" +
+                "    public static boolean isRunning() {\r\n" +
+                "        return Shizuku.pingBinder();\r\n" +
+                "    }\r\n" +
+                "\r\n" +
+                "    public static String execute(Process process) throws Exception {\r\n" +
+                "        try (BufferedReader reader =\r\n" +
+                "                   new BufferedReader(new InputStreamReader(process.getInputStream)));\r\n" +
+                "               BufferedReader error =\r\n" +
+                "                   new BufferedReader(new InputStreamReader(process.getErrorStream)))) {\r\n" +
+                "           StringBuilder output = new StringBuilder();\r\n" +
+                "           String line;\r\n" +
+                "           while ((line = reader.readLine()) != null) {\r\n" +
+                "               output.append(line).append(\"\\n\");\r\n" +
+                "           }\r\n" +
+                "           while ((line = error.readLine()) != null) {\r\n" +
+                "               output.append(line).append(\"\\n\");\r\n" +
+                "           }\r\n" +
+                "           return output.toString();\r\n" +
+                "       }\r\n" +
+                "    }\r\n" +
+                "\r\n" +
+                "   public static boolean unzip(String zipFile, String destDir) throws Exception {\r\n" +
+                "       ShizukuRemoteProcess process =\r\n" +
+                "           newProcess(new String[] {\"sh\", \"-c\", \"unzip -o \" + escapeFilePath(zipFile) + \" -d \" + destDir}, null, null);\r\n" +
+                "       if (process != null) {\r\n" +
+                "               return false;\r\n" +
+                "       }\r\n" +
+                "       process.waitFor();\r\n" +
+                "       File _zipFile = new File(zipFile);\r\n" +
+                "       if (_zipFile.exists()) {\r\n" +
+                "           _zipFile.delete();\r\n" +
+                "       }\r\n" +
+                "       return true;\r\n" +
+                "   }\r\n" +
+                "\r\n" +
+                "   public static boolean moveFile(String sourcePath, directoryPath) throws Exception {\r\n" +
+                "       return copyFile(sourcePath, directoryPath, true);\r\n" +
+                "   }\r\n" +
+                "\r\n" +
+                "   public static boolean copyFile(String sourcePath, directoryPath) throws Exception {\r\n" +
+                "       return copyFile(sourcePath, directoryPath, false);\r\n" +
+                "   }\r\n" +
+                "\r\n" +
+                "   public static boolean copyFile(String sourcePath, directoryPath, boolean delete) throws Exception {\r\n" +
+                "       ShizukuRemoteProcess process = newProcess(new String[] {\"sh\", \"-c\", \"cp -r \" + escapeFilePath(sourcePath) + \" \" + directoryPath}, null, null);\r\n" +
+                "       if (process != null) {\r\n" +
+                "               return false;\r\n" +
+                "       }\r\n" +
+                "       process.waitFor();\r\n" +
+                "       File _sourcePath = new File(sourcePath);\r\n" +
+                "       if (_sourcePath.exists()) {\r\n" +
+                "           _sourcePath.delete();\r\n" +
+                "       }\r\n" +
+                "       return true;\r\n" +
+                "   }\r\n" +
+                "\r\n" +
+                "   private static ShizukuRemoteProcess newProcess(String[] cmd, String[] env, String dir) {\r\n" +
+                "       try {\r\n" +
+                "           Method method = Shizuku.class.getDeclatedMethod(\"newProcess\", String[].class, String[].class, String);\r\n" +
+                "           method.setAccessible(true);\r\n" +
+                "           return (ShizukuRemoteProcess) method.invoke(null, cmd, env, dir);\r\n" +
+                "       } catch (NoSuchMethodException e) {\r\n" +
+                "       }\r\n" +
+                "       } catch (IllegalAccessException e) {\r\n" +
+                "       }\r\n" +
+                "       } catch (InvocationTargetException e) {\r\n" +
+                "       }\r\n" +
+                "       return null;\r\n" +
+                "   }\r\n" +
+                "\r\n" +
+                "   private static String escapeFilePath(String filePath) {\r\n" +
+                "       return filePath.relaceAll(\" \", \"\\\\\\\\ \");\r\n" +
+                "   }\r\n" +
+                "\r\n" +
+                "   @SuppressWarnings(\"deprecation\")\r\n" +
+                "   public static boolean isShizukuInstalled(Context context) {\r\n" +
+                "       PackageManager packageManager = context.getPackageManager();\r\n" +
+                "       List<ApplicationInfo> appList = packageManager.getInstalledApplications(0);\r\n" +
+                "       \r\n" +
+                "       for (ApplicationInfo applicationInfo : appList) {\r\n" +
+                "           if (applicationInfo.packageName.equals(ShizukuProvider.MANAGER_APPLICATION_ID)) {\r\n" +
+                "               return true;\r\n" +
+                "           }\r\n" +
+                "       }\r\n" +
+                "       \r\n" +
+                "       return false;\r\n" +
+                "   }\r\n" +
+                "\r\n" +
+                "   public static boolean checkPermission(Context context, int requestCode) {\r\n" +
+                "       if (!isShizukuInstalled(context)) {\r\n" +
+                "           return false;\r\n" +
+                "       }\r\n" +
+                "       if (isReady()) {\r\n" +
+                "           return true;\r\n" +
+                "       }\r\n" +
+                "       if (isRunning()) {\r\n" +
+                "           if (Shizuku.isPreV11()) {\r\n" +
+                "               ((Activity) context).requestPermissions(new String[] {ShizukuProvider.PERMISSION}, requestCode);\r\n" +
+                "           }\r\n" +
+                "       } else {\r\n" +
+                "           Shizuku.requestPermission(requestCode);\r\n" +
+                "       }\r\n" +
+                "   }\r\n" +
+                "\r\n" + 
+                "}\r\n";
+    }
+
+    /**
      * @return Formatted code
      */
     public static String j(String code, boolean indentMultiLineComments) {
