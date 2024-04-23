@@ -111,7 +111,6 @@ import mod.jbk.code.CodeEditorLanguages;
 import mod.jbk.diagnostic.CompileErrorSaver;
 import mod.jbk.diagnostic.MissingFileException;
 import mod.jbk.util.LogUtil;
-import mod.jbk.util.TestkeySignBridge;
 import mod.khaled.logcat.LogReaderActivity;
 
 public class DesignActivity extends BaseAppCompatActivity implements OnClickListener {
@@ -1043,15 +1042,8 @@ public class DesignActivity extends BaseAppCompatActivity implements OnClickList
                         return;
                     }
 
-                    publishProgress("Aligning APK...");
-                    builder.runZipalign(builder.yq.unsignedUnalignedApkPath, builder.yq.unsignedAlignedApkPath);
-                    if (canceled) {
-                        cancel(true);
-                        return;
-                    }
-
                     publishProgress("Signing APK...");
-                    TestkeySignBridge.signWithTestkey(builder.yq.unsignedAlignedApkPath, builder.yq.finalToInstallApkPath);
+                    builder.signDebugApk();
                     if (canceled) {
                         cancel(true);
                         return;
